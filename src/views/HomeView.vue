@@ -14,64 +14,89 @@
         <div class="coupon-box">GOLD MEMBRSHIP up to 50%</div>
       </div>
     </div>
-    <!-- <br>
-    <div class="items" >
-        <div class="item"><div class="box"><img src="../assets/images/item.jpg" alt=""></div></div>
-        <div class="item"><div class="box"><img src="../assets/images/item.jpg" alt=""></div></div>
-        <div class="item"><div class="box"><img src="../assets/images/item.jpg" alt=""></div></div>
-        <div class="item"><div class="box"><img src="../assets/images/item.jpg" alt=""></div></div>
-        <div class="item"><div class="box"><img src="../assets/images/item.jpg" alt=""></div></div>
-        <div class="item"><div class="box"><img src="../assets/images/item.jpg" alt=""></div></div>
-        <div class="item"><div class="box"><img src="../assets/images/item.jpg" alt=""></div></div>
-        <div class="item"><div class="box"><img src="../assets/images/item.jpg" alt=""></div></div>
-        <div class="item"><div class="box"><img src="../assets/images/item.jpg" alt=""></div></div>
-        <div class="item"><div class="box"><img src="../assets/images/item.jpg" alt=""></div></div>
-        <div class="item"><div class="box"><img src="../assets/images/item.jpg" alt=""></div></div>
-        <div class="item"><div class="box"><img src="../assets/images/item.jpg" alt=""></div></div>
-    </div>
-
-    <br>
-     -->
-     <div>
-    <!-- <h2>JSON Data:</h2> -->
-    <ul>
-      <li v-for="item in jsonData" :key="item.id">
-        <p>{{ item.name }}</p>
-        <p>{{ item.description }}</p>
+    
+    <div>
+    <ul class="product-list">
+      <li v-for="product in products" :key="product.id" class="product-item">
+        <div class="product-image">
+          <img :src="product.image" :alt="product.title" />
+        </div>
+        <div class="product-details">
+          <h3>{{ product.title }}</h3>
+          <p class="product-price">Price: ${{ product.price }}</p>
+          <p class="product-category">Category: {{ product.category }}</p>
+          <p class="product-description">Description: {{ product.description }}</p>
+        </div>
       </li>
     </ul>
   </div>
-      
-
+     
   </div>
 </template>
+
 <script>
-// export default {
-//   mounted() {
-//    const url = "https://fakestoreapi.com/products/1";
-//    async function getAllProducts(){
-//     const response = await fetch(url);
-//     const data = await response.json();
-//     console.log(data);
-//    }
-//    getAllProducts();
-//   },
-// };
+import axios from 'axios';
+
 export default {
-  // data() {
-  //   return {
-  //     jsonData: [
-  //       { id: 1, name: 'Item 1', description: 'Description for Item 1' },
-  //       { id: 2, name: 'Item 2', description: 'Description for Item 2' },
-  //       { id: 3, name: 'Item 3', description: 'Description for Item 3' }
-  //     ]
-  //   };
-  // }
-
+  data() {
+    return {
+      products: []
+    };
+  },
+  mounted() {
+    axios
+      .get('https://fakestoreapi.com/products?limit=5')
+      .then(response => {
+        this.products = response.data;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
 };
-
 </script>
+<style scoped>
+.product-list {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0;
+}
 
+.product-item {
+  width: 300px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.product-image img {
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.product-details h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.product-price {
+  margin-top: 5px;
+}
+
+.product-category {
+  margin-top: 5px;
+  font-style: italic;
+}
+
+.product-description {
+  margin-top: 10px;
+}
+</style>
 <style>
 
 h2 {

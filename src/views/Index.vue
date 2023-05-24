@@ -15,7 +15,7 @@
       <i class="uil uil-search search-icon" id="searchIcon"></i>
       <div class="search-box">
         <i class="uil uil-search search-icon"></i>
-        <input type="text" placeholder="Search here..." />
+        <input type="text" v-model="searchTerm" placeholder="Search here..." />
       </div>
     </nav>
 
@@ -35,7 +35,7 @@
         </ul>
       </nav>
     </div>
-    <p class="footer-text">&copy; 2023 Your Company. All rights reserved.</p>
+    <p class="footer-text">&copy; 2023 HENG VISOTHI. All rights reserved.</p>
   </div>
   </footer>
 </template>
