@@ -3,7 +3,7 @@
    
     <nav class="nav">
       <i class="uil uil-bars navOpenBtn"></i>
-      <a href="#" class="logo">HENG VISOTHI</a>
+      <a href="#" class="logo"><RouterLink to="/">HENG VISOTHI</RouterLink></a>
       <ul class="nav-links">
         <i class="uil uil-times navCloseBtn"></i>
         <li><RouterLink to="/">Home</RouterLink></li>
@@ -20,12 +20,15 @@
     </nav>
 
    </header>
+<!--  -->
   <RouterView />
+
+
   <footer>
     <div class="container">
     <div class="footer-content">
       <div class="footer-logo">
-        <a href="#">HENG VISOTHI</a>
+        <a href="#"><RouterLink to="/">HENG VISOTHI</RouterLink></a>
       </div>
       <nav class="footer-nav">
         <ul>

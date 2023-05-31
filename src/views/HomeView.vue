@@ -1,7 +1,7 @@
 <template>
   <div class="home">
 
-    <div class="model">
+    <!-- <div class="model" >
       <div class="row">
         <div class="coupon-box1">
           <h2 class="">SPRING SALE — 20% OFF WITH CODE: SPRING 
@@ -13,7 +13,7 @@
         <div class="coupon-box">Free Delivery For spending up $100</div>
         <div class="coupon-box">GOLD MEMBRSHIP up to 50%</div>
       </div>
-    </div>
+    </div> -->
     
     <div>
     <ul class="product-list">
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import jsonData from './dataAPI.json';
 
 export default {
   data() {
@@ -44,17 +44,12 @@ export default {
     };
   },
   mounted() {
-    axios
-      .get('https://fakestoreapi.com/products?limit=5')
-      .then(response => {
-        this.products = response.data;
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    this.products = jsonData;
   }
 };
+
 </script>
+
 <style scoped>
 .product-list {
   list-style-type: none;
@@ -98,6 +93,9 @@ export default {
 }
 </style>
 <style>
+.home{
+  margin-top: 100px;
+}
 
 h2 {
   margin: 0;
@@ -121,7 +119,7 @@ h2 {
 .model{
   width: 100%;
   height: auto;
-  display: block;
+  display: inline-block;
   /* flex-direction: row;
   justify-content: space-around; */
   margin-top: 50px;
